@@ -8,13 +8,18 @@ class MonkeyDance(webapp2.RequestHandler):
 
 
 def make_me_dance(emoji, self):
-    emoji = int(emoji)
-    if isinstance(emoji, int):
-        self.response.write(":monkey-dancing:"*emoji)
-    elif emoji == "help":
-        self.response.write("Helping you")
-    else:
-        self.response.write("You can do better than that!")
+    try:
+        emoji = int(emoji)
+        
+        if isinstance(emoji, int):
+            self.response.write(":monkey-dancing:"*emoji)
+        elif emoji == "help":
+            self.response.write("Helping you")
+        else:
+            self.response.write("You can do better than that!")
+
+    except ValueError:
+        self.response.write("Monkey dances with integers only")
 
 
 app = webapp2.WSGIApplication([
