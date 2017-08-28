@@ -10,7 +10,6 @@ class MonkeyDance(webapp2.RequestHandler):
 def make_me_dance(emoji, self):
     try:
         emoji = int(emoji)
-        
         if isinstance(emoji, int):
             self.response.write(":monkey-dancing:"*emoji)
         elif emoji == "help":
@@ -23,13 +22,13 @@ def make_me_dance(emoji, self):
 
 
 app = webapp2.WSGIApplication([
-        (r'/MonkeyDance', MonkeyDance)
+        (r'/', MonkeyDance)
 ])
 
 
 def main():
     from paste import httpserver
-    httpserver.serve(app, host='127.0.0.1', port='8080')
+    httpserver.serve(app, host='https://monkeydance.herokuapp.com', port='8080')
 
 if __name__ == '__main__':
     main()
